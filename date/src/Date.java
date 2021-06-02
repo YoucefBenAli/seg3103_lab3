@@ -52,10 +52,10 @@ public class Date {
 		if (isThirtyDayMonth() && day > 30) {
 			throw new IllegalArgumentException("day must less than 30 for month " + monthName());
 		}
-		if (this.month == 2 && isLeapYear() && day > 29) {
+		if (isFebruary() && isLeapYear() && day > 29) {
 			throw new IllegalArgumentException("day must less than 29 for month " + monthName() + " on a leap year.");
 		}
-		if (this.month == 2 && !isLeapYear() && day > 28) {
+		if (isFebruary() && !isLeapYear() && day > 28) {
 			throw new IllegalArgumentException("day must less than 28 for month " + monthName() + " on a non leap year.");
 		}
 		this.day = day;
@@ -107,7 +107,7 @@ public class Date {
 	private boolean isEndOfMonth() {
 		boolean leap = isLeapYear();
 		if (day == 31 || (day == 30 && isThirtyDayMonth()) ||
-				(this.month == 2 && ((day == 29 && leap) || (day == 28 && !leap))))
+				(isFebruary() && ((day == 29 && leap) || (day == 28 && !leap))))
 			return true;
 		else return false;
 	}
@@ -144,6 +144,10 @@ public class Date {
 
 	private String monthName(){
 		return monthNames[this.month-1];
+	}
+
+	private boolean isFebruary(){
+		return this.month==2;
 	}
 
 }
