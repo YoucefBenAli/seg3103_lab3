@@ -105,14 +105,13 @@ public class Date {
 	 * Check if the date is a end of a month.
 	 */
 	private boolean isEndOfMonth() {
-		boolean leap = isLeapYear();
 		if(day==31){
 			return true;
 		}
 		else if(day == 30 && isThirtyDayMonth()){
 			return true;
 		}
-		else if(isFebruary() && (day == 29 || (day == 28 && !leap))){
+		else if(isFebruary() && (day == 29 || (day == 28 && !isLeapYear()))){
 			return true;
 		}
 		else return false;
