@@ -112,7 +112,7 @@ public class Date {
 		else if(day == 30 && isThirtyDayMonth()){
 			return true;
 		}
-		else if(isFebruary() && ((day == 29 && leap) || (day == 28 && !leap))){
+		else if(isFebruary() && (day == 29 || (day == 28 && !leap))){
 			return true;
 		}
 		else return false;
