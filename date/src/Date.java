@@ -50,13 +50,13 @@ public class Date {
 			throw new IllegalArgumentException("day must less or equal to 31.");
 		}
 		if (isThirtyDayMonth() && day > 30) {
-			throw new IllegalArgumentException("day must less than 30 for month " + monthNames[month-1]);
+			throw new IllegalArgumentException("day must less than 30 for month " + monthName());
 		}
 		if (this.month == 2 && isLeapYear() && day > 29) {
-			throw new IllegalArgumentException("day must less than 29 for month " + monthNames[month-1] + " on a leap year.");
+			throw new IllegalArgumentException("day must less than 29 for month " + monthName() + " on a leap year.");
 		}
 		if (this.month == 2 && !isLeapYear() && day > 28) {
-			throw new IllegalArgumentException("day must less than 28 for month " + monthNames[month-1] + " on a non leap year.");
+			throw new IllegalArgumentException("day must less than 28 for month " + monthName() + " on a non leap year.");
 		}
 		this.day = day;
 	}
@@ -133,13 +133,17 @@ public class Date {
 	}
 
 	public String toString() {
-		return year + "/" + monthNames[month-1] + "/" + day;
+		return year + "/" + monthName() + "/" + day;
 	}
 
 	public boolean equals(Object obj) {
 		if (! (obj instanceof Date)) return false;
 		Date od = (Date)obj;
 		return year == od.getYear() && month == od.getMonth()  && day == od.getDay();
+	}
+
+	private String monthName(){
+		return monthNames[this.month-1];
 	}
 
 }
