@@ -43,11 +43,8 @@ public class Date {
 	 *   - less or equal to 30 for February if year is non-leap
 	 */
 	private void setDay(int day) {
-		if (day < 1) {
-			throw new IllegalArgumentException("day must greater or equal to 1.");
-		}
-		if (day > 31){
-			throw new IllegalArgumentException("day must less or equal to 31.");
+		if (day < 1 || day > 31) {
+			throw new IllegalArgumentException("day must between 1 and 31 (Inclusive)");
 		}
 		if (isThirtyDayMonth() && day > 30) {
 			throw new IllegalArgumentException("day must less than 30 for month " + monthName());
